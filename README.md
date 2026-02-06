@@ -1,19 +1,19 @@
-# 🎨 Claude + Figma Complete Integration
+# Claude + Figma Complete Integration
 
 **Enable Claude AI to CREATE, READ, and MANIPULATE Figma designs in real-time.**
 
 This is a complete solution that overcomes Figma's REST API read-only limitations by combining an MCP Server with a Figma Plugin via webhook bridge.
 
-## 🚀 What Claude Can Do
+##  What Claude Can Do
 
-### ✅ Read Operations (Figma REST API)
+### Read Operations (Figma REST API)
 - Read complete file structures and design hierarchies
 - Extract design systems (colors, typography, components)
 - Export nodes as images (PNG, SVG, PDF)  
 - Read and post comments for collaboration
 - Analyze designs and suggest improvements
 
-### ✅ Write Operations (Figma Plugin)
+### Write Operations (Figma Plugin)
 - Create frames, rectangles, text nodes, shapes
 - Build buttons and input field components
 - Generate complete screen prototypes from requirements
@@ -22,14 +22,14 @@ This is a complete solution that overcomes Figma's REST API read-only limitation
 
 ---
 
-## 📋 Prerequisites
+## Prerequisites
 
 - Node.js 18+ ([Download](https://nodejs.org/))
 - Figma Account
 - Figma Desktop App
 - Claude Desktop
 
-## 🛠️ Quick Start
+## Quick Start
 
 ### 1. Get Figma Access Token
 
@@ -94,7 +94,7 @@ npm start
 
 ---
 
-## 💬 Example Usage
+## Example Usage
 
 ### Analyze Design
 ```
@@ -124,7 +124,7 @@ Use modern style
 
 ---
 
-## 🔧 Available Tools
+## Available Tools
 
 **Read**: `get_file`, `read_design_system`, `export_nodes`, `get_comments`, `add_comment`
 
@@ -134,7 +134,7 @@ See full documentation in examples folder.
 
 ---
 
-## 🔍 Troubleshooting
+## Troubleshooting
 
 ### MCP Server Not Connected
 - Check server is running: `npm start`
@@ -152,7 +152,7 @@ See full documentation in examples folder.
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 Claude Desktop ←→ MCP Server ←→ Figma Plugin ←→ Figma Canvas
@@ -164,7 +164,7 @@ Claude Desktop ←→ MCP Server ←→ Figma Plugin ←→ Figma Canvas
 
 ---
 
-## 📦 Project Structure
+## Project Structure
 
 ```
 figma-claude-integration/
@@ -180,7 +180,7 @@ figma-claude-integration/
 
 ---
 
-## 🎉 Ready to Go!
+## Ready to Go!
 
 Try your first command:
 
@@ -194,7 +194,7 @@ Use modern style
 
 ---
 
-## 📄 License
+## License
 
 MIT - Modify and extend as needed!
 
