@@ -1,0 +1,16 @@
+{
+  "name": "Claude Design Assistant",
+  "id": "claude-figma-design-assistant",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html",
+  "editorType": ["figma"],
+  "networkAccess": {
+    "allowedDomains": [
+      "localhost"
+    ],
+    "reasoning": "Plugin communicates with local MCP server to receive design commands from Claude AI"
+  },
+  "capabilities": [],
+  "permissions": []
+}

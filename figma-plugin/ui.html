@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      padding: 20px;
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 20px;
+      border-radius: 12px;
+      margin: -20px -20px 20px -20px;
+    }
+
+    .header h1 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .header p {
+      font-size: 13px;
+      opacity: 0.9;
+    }
+
+    .status-card {
+      background: white;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .status-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .status-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .status-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: #666;
+    }
+
+    .status-indicator {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    .dot.connected {
+      background: #10b981;
+    }
+
+    .dot.disconnected {
+      background: #ef4444;
+      animation: none;
+    }
+
+    .dot.idle {
+      background: #f59e0b;
+      animation: none;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
+    }
+
+    .button {
+      width: 100%;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 12px;
+    }
+
+    .button:last-child {
+      margin-bottom: 0;
+    }
+
+    .button.primary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .button.primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    }
+
+    .button.primary:active {
+      transform: translateY(0);
+    }
+
+    .button.secondary {
+      background: white;
+      color: #667eea;
+      border: 2px solid #667eea;
+    }
+
+    .button.secondary:hover {
+      background: #f8f9ff;
+    }
+
+    .button.danger {
+      background: #ef4444;
+      color: white;
+    }
+
+    .button.danger:hover {
+      background: #dc2626;
+    }
+
+    .button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
+    .section {
+      background: white;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #333;
+    }
+
+    .info-text {
+      font-size: 12px;
+      line-height: 1.6;
+      color: #666;
+      margin-bottom: 12px;
+    }
+
+    .code-block {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 12px;
+      border-radius: 6px;
+      font-family: 'Monaco', 'Courier New', monospace;
+      font-size: 11px;
+      overflow-x: auto;
+      margin: 12px 0;
+    }
+
+    .activity-log {
+      max-height: 150px;
+      overflow-y: auto;
+      background: #f9fafb;
+      border-radius: 6px;
+      padding: 8px;
+      font-size: 11px;
+      font-family: 'Monaco', monospace;
+    }
+
+    .log-entry {
+      padding: 4px 0;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .log-entry:last-child {
+      border-bottom: none;
+    }
+
+    .log-entry.success {
+      color: #10b981;
+    }
+
+    .log-entry.error {
+      color: #ef4444;
+    }
+
+    .log-entry.info {
+      color: #3b82f6;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+
+    .badge.success {
+      background: #d1fae5;
+      color: #065f46;
+    }
+
+    .badge.warning {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .feature-list li {
+      padding: 8px 0;
+      font-size: 12px;
+      color: #666;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .feature-list li:before {
+      content: "✓";
+      color: #10b981;
+      font-weight: bold;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🤖 Claude + Figma</h1>
+    <p>AI-Powered Design Generation</p>
+  </div>
+
+  <div class="status-card">
+    <div class="status-row">
+      <span class="status-label">MCP Server</span>
+      <div class="status-indicator" id="serverStatus">
+        <span class="dot disconnected"></span>
+        <span>Disconnected</span>
+      </div>
+    </div>
+    <div class="status-row">
+      <span class="status-label">Polling Status</span>
+      <div class="status-indicator" id="pollingStatus">
+        <span class="dot idle"></span>
+        <span>Idle</span>
+      </div>
+    </div>
+    <div class="status-row">
+      <span class="status-label">File Key</span>
+      <div class="status-indicator" id="fileKey">
+        <code style="font-size: 11px; color: #666;">...</code>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Connection</div>
+    <button class="button primary" id="startPolling">
+      🚀 Start Listening for Claude
+    </button>
+    <button class="button danger" id="stopPolling" style="display: none;">
+      ⏸️ Stop Listening
+    </button>
+    <button class="button secondary" id="testConnection">
+      🔌 Test Connection
+    </button>
+  </div>
+
+  <div class="section">
+    <div class="section-title">What Claude Can Do</div>
+    <ul class="feature-list">
+      <li>Create frames, rectangles, text, and shapes</li>
+      <li>Build buttons and input fields</li>
+      <li>Generate complete screen prototypes</li>
+      <li>Apply auto-layout automatically</li>
+      <li>Read and analyze your designs</li>
+      <li>Extract design systems and colors</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Activity Log</div>
+    <div class="activity-log" id="activityLog">
+      <div class="log-entry info">Waiting for connection...</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Setup Instructions</div>
+    <div class="info-text">
+      <strong>1.</strong> Make sure the MCP server is running:
+    </div>
+    <div class="code-block">cd mcp-server && node server.js</div>
+    <div class="info-text">
+      <strong>2.</strong> Click "Start Listening for Claude"
+    </div>
+    <div class="info-text">
+      <strong>3.</strong> In Claude, use commands like:
+    </div>
+    <div class="code-block">create_frame with name "Login Screen", width 375, height 812</div>
+  </div>
+
+  <script>
+    const startButton = document.getElementById('startPolling');
+    const stopButton = document.getElementById('stopPolling');
+    const testButton = document.getElementById('testConnection');
+    const serverStatus = document.getElementById('serverStatus');
+    const pollingStatus = document.getElementById('pollingStatus');
+    const fileKeyEl = document.getElementById('fileKey');
+    const activityLog = document.getElementById('activityLog');
+
+    function addLog(message, type = 'info') {
+      const entry = document.createElement('div');
+      entry.className = `log-entry ${type}`;
+      entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+      activityLog.appendChild(entry);
+      activityLog.scrollTop = activityLog.scrollHeight;
+      
+      // Keep only last 50 entries
+      while (activityLog.children.length > 50) {
+        activityLog.removeChild(activityLog.firstChild);
+      }
+    }
+
+    function updateServerStatus(connected) {
+      const dot = serverStatus.querySelector('.dot');
+      const text = serverStatus.querySelector('span:not(.dot)');
+      
+      if (connected) {
+        dot.className = 'dot connected';
+        text.textContent = 'Connected';
+      } else {
+        dot.className = 'dot disconnected';
+        text.textContent = 'Disconnected';
+      }
+    }
+
+    function updatePollingStatus(polling) {
+      const dot = pollingStatus.querySelector('.dot');
+      const text = pollingStatus.querySelector('span:not(.dot)');
+      
+      if (polling) {
+        dot.className = 'dot connected';
+        text.textContent = 'Listening';
+      } else {
+        dot.className = 'dot idle';
+        text.textContent = 'Idle';
+      }
+    }
+
+    startButton.addEventListener('click', () => {
+      parent.postMessage({ pluginMessage: { type: 'START_POLLING' } }, '*');
+      addLog('Starting polling...', 'info');
+    });
+
+    stopButton.addEventListener('click', () => {
+      parent.postMessage({ pluginMessage: { type: 'STOP_POLLING' } }, '*');
+      addLog('Stopping polling...', 'info');
+    });
+
+    testButton.addEventListener('click', () => {
+      parent.postMessage({ pluginMessage: { type: 'TEST_CONNECTION' } }, '*');
+      addLog('Testing connection...', 'info');
+    });
+
+    window.onmessage = (event) => {
+      const msg = event.data.pluginMessage;
+      
+      if (!msg) return;
+
+      switch (msg.type) {
+        case 'REGISTERED':
+          updateServerStatus(true);
+          fileKeyEl.innerHTML = `<code style="font-size: 11px; color: #10b981;">${msg.data.fileKey || 'local'}</code>`;
+          addLog('✓ Registered with MCP server', 'success');
+          break;
+
+        case 'POLLING_STARTED':
+          updatePollingStatus(true);
+          startButton.style.display = 'none';
+          stopButton.style.display = 'block';
+          addLog('✓ Now listening for Claude commands', 'success');
+          break;
+
+        case 'POLLING_STOPPED':
+          updatePollingStatus(false);
+          startButton.style.display = 'block';
+          stopButton.style.display = 'none';
+          addLog('Stopped listening', 'info');
+          break;
+
+        case 'OPERATION_SUCCESS':
+          addLog(`✓ ${msg.action} completed: ${msg.result.nodeName || msg.result.nodeId}`, 'success');
+          break;
+
+        case 'OPERATION_ERROR':
+          addLog(`✗ ${msg.action} failed: ${msg.error}`, 'error');
+          break;
+
+        case 'ERROR':
+          updateServerStatus(false);
+          addLog(`✗ Error: ${msg.message}`, 'error');
+          break;
+      }
+    };
+
+    // Initial log
+    addLog('Plugin initialized. Ready to connect.', 'info');
+  </script>
+</body>
+</html>

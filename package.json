@@ -1,0 +1,39 @@
+{
+  "name": "figma-claude-integration",
+  "version": "2.0.0",
+  "description": "Complete design automation with Claude AI and Figma - Create, analyze, and optimize designs using natural language",
+  "private": true,
+  "workspaces": [
+    "mcp-server",
+    "figma-plugin"
+  ],
+  "scripts": {
+    "setup": "npm install && cd mcp-server && npm install",
+    "start": "cd mcp-server && npm start",
+    "dev": "cd mcp-server && npm run dev",
+    "test": "echo 'Tests coming soon'",
+    "clean": "rm -rf node_modules mcp-server/node_modules figma-plugin/node_modules",
+    "reinstall": "npm run clean && npm run setup"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/figma-claude-integration.git"
+  },
+  "keywords": [
+    "figma",
+    "claude",
+    "ai",
+    "design",
+    "automation",
+    "mcp",
+    "design-system",
+    "accessibility",
+    "uiux"
+  ],
+  "author": "Claude + Figma Integration Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yourusername/figma-claude-integration/issues"
+  },
+  "homepage": "https://github.com/yourusername/figma-claude-integration#readme"
+}
