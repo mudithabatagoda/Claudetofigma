@@ -198,4 +198,5 @@ Use modern style
 
 MIT - Modify and extend as needed!
 
-**Made with ❤️ for AI-powered design**
+**Made with ❤️ for AI-powered design by Fusion UX**
+
